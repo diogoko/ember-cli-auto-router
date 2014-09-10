@@ -1,0 +1,14 @@
+{
+  "name": "ember-cli-auto-router",
+  "version": "0.1.0",
+  "description": "Auto-routing for ember-cli",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/mocha/bin/mocha test.js"
+  },
+  "author": "Diogo Kollross",
+  "license": "MIT",
+  "devDependencies": {
+    "mocha": "^1.21.4"
+  }
+}
