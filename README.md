@@ -36,4 +36,4 @@ when you have these files:
 
 # License
 
-MIT
+ember-cli-auto-router is [MIT Licensed](https://github.com/diogoko/ember-cli-auto-router/blob/master/LICENSE.md).
