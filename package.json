@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Auto-routing for ember-cli",
   "main": "index.js",
+  "keywords": [
+    "ember-addon"
+  ],
   "scripts": {
     "test": "node_modules/mocha/bin/mocha test.js"
   },
