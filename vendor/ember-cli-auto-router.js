@@ -16,10 +16,8 @@ function registerRoutes(routerMap, rootRoute) {
     var childRoute = rootRoute[childRouteName];
     if (isLeafRoute(childRoute)) {
       routerMap.route(childRouteName);
-      console.debug('registered route ' + childRouteName);
     } else {
       routerMap.resource(childRouteName, createChildrenFunction(childRoute));
-      console.debug('registered resource ' + childRouteName);
     }
   });
 }
