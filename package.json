@@ -2,16 +2,19 @@
   "name": "ember-cli-auto-router",
   "version": "0.1.0",
   "description": "Auto-routing for ember-cli",
-  "main": "index.js",
   "keywords": [
     "ember-addon"
   ],
   "scripts": {
-    "test": "node_modules/mocha/bin/mocha test.js"
+    "test": "grunt"
   },
   "author": "Diogo Kollross",
   "license": "MIT",
   "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-es6-module-transpiler": "^0.6.0",
+    "grunt-mocha-test": "^0.11.0",
     "mocha": "^1.21.4"
   }
 }

@@ -1,5 +1,5 @@
 var assert = require('assert');
-var autoMap = require('./');
+var autoMap = require('../tmp/vendor/ember-cli-auto-router');
 
 function FakeRouterDSL(parent) {
   this.parent = parent;
@@ -19,6 +19,6 @@ FakeRouterDSL.prototype.resource = function(name, callback) {
 
 describe('bla', function() {
   it('should be ok', function() {
-    assert.equal(autoMap(), 'oi');
+    assert.equal(typeof autoMap['default'], 'function');
   });
 });
