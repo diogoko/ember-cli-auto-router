@@ -18,12 +18,26 @@ function FakeRouterDSL(parent) {
   });
 }
 
-FakeRouterDSL.prototype.route = function(name) {
-  this.routes[name] = true;
+FakeRouterDSL.prototype.route = function(name, options) {
+  if (arguments.length === 1) {
+    options = {};
+  }
+
+  this.routes[name] = { 'options': options };
 };
 
-FakeRouterDSL.prototype.resource = function(name, callback) {
+FakeRouterDSL.prototype.resource = function(name, options, callback) {
+  if (arguments.length === 2 && typeof options === 'function') {
+    callback = options;
+    options = {};
+  }
+
+  if (arguments.length === 1) {
+    options = {};
+  }
+
   var child = new FakeRouterDSL(this);
+  child.options = options;
   callback.call(child);
 
   this.resources[name] = child;
@@ -38,11 +52,18 @@ Ember = {
   }
 };
 
-function setupModules(names) {
-  var _eak_seen = {};
-  names.forEach(function(name) {
-    _eak_seen[name] = true;
-  });
+function setupModules(modules) {
+  var _eak_seen;
+
+  if (modules instanceof Array) {
+    _eak_seen = {};
+    modules.forEach(function(name) {
+      _eak_seen[name] = {};
+    });
+  } else {
+    _eak_seen = modules;
+  }
+
   requirejs = { _eak_seen: _eak_seen };
 }
 

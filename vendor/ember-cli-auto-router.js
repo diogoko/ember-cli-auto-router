@@ -13,11 +13,17 @@ function isLeafRoute(route) {
 
 function registerRoutes(routerMap, rootRoute) {
   Ember.keys(rootRoute).forEach(function(childRouteName) {
+
     var childRoute = rootRoute[childRouteName];
+    var options = {};
+    if (childRoute['__ember_cli_auto_router_path']) {
+      options.path = childRoute['__ember_cli_auto_router_path'];
+    }
+
     if (isLeafRoute(childRoute)) {
-      routerMap.route(childRouteName);
+      routerMap.route(childRouteName, options);
     } else {
-      routerMap.resource(childRouteName, createChildrenFunction(childRoute));
+      routerMap.resource(childRouteName, options, createChildrenFunction(childRoute));
     }
   });
 }
@@ -47,6 +53,11 @@ function autoMap(routerMap) {
 
       currentRoute = currentRoute[part];
     });
+
+    Object.defineProperty(currentRoute, '__ember_cli_auto_router_path', {
+      value: requirejs._eak_seen[moduleName].path
+    });
+    //currentRoute.__ember_cli_auto_router_path = requirejs._eak_seen[moduleName].path;
   });
 
   registerRoutes(routerMap, rootRoute);

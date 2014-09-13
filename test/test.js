@@ -152,3 +152,19 @@ describe('built-in routes', function() {
   });
 });
 
+describe('custem routes and resources', function() {
+  it('register custom path', function() {
+    setupModules({
+      'app/routes/posts': { 'path': '/my_posts' },
+      'app/routes/post': { 'path': '/post/:id' }
+    });
+
+    autoMap(map);
+
+    map.routes.names.should.be.eql(['posts']);
+    map.routes['posts'].path.should.be.eql('/my_posts');
+
+    map.resources.names.should.be.eql(['post']);
+    map.resources['post'].path.should.be.eql('/post/:id');
+  });
+});
