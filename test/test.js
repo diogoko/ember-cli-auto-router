@@ -13,7 +13,7 @@ beforeEach(function() {
 });
 
 describe('flat routes', function() {
-  it('works with no routes defined', function() {
+  it('work with no routes defined', function() {
     setupModules([]);
 
     autoMap(map);
@@ -22,7 +22,7 @@ describe('flat routes', function() {
     map.resources.should.be.empty;
   });
 
-  it('registers one route', function() {
+  it('register one route', function() {
     setupModules(['app/routes/posts']);
 
     autoMap(map);
@@ -32,7 +32,7 @@ describe('flat routes', function() {
     map.resources.should.be.empty;
   });
 
-  it('registers many routes', function() {
+  it('register many routes', function() {
     setupModules(['app/routes/posts', 'app/routes/comments', 'app/routes/users']);
 
     autoMap(map);
@@ -44,7 +44,7 @@ describe('flat routes', function() {
 });
 
 describe('resources with nesting', function() {
-  it('registers one resource', function() {
+  it('register one resource', function() {
     setupModules(['app/routes/posts', 'app/routes/posts/new']);
 
     autoMap(map);
@@ -58,7 +58,7 @@ describe('resources with nesting', function() {
     map.resources['posts'].resources.should.be.empty;
   });
 
-  it('registers many resources and routes', function() {
+  it('register many resources and routes', function() {
     setupModules([
       'app/routes/posts',
       'app/routes/posts/new',
@@ -104,7 +104,7 @@ describe('resources with nesting', function() {
 });
 
 describe('built-in routes', function() {
-  it('ignores application at the root', function() {
+  it('ignore application at the root', function() {
     setupModules(['app/routes/application', 'app/routes/posts']);
 
     autoMap(map);
@@ -112,7 +112,7 @@ describe('built-in routes', function() {
     map.routes.names.should.be.eql(['posts']);
   });
 
-  it('ignores index as any leaf', function() {
+  it('ignore index as any leaf', function() {
     setupModules([
       'app/routes/index',
       'app/routes/posts',
@@ -131,7 +131,7 @@ describe('built-in routes', function() {
     map.resources['posts'].resources.should.be.empty;
   });
 
-  it('ignores application when it\'s root', function() {
+  it('ignore application when it\'s root', function() {
     setupModules([
       'app/routes/application',
       'app/routes/posts',
