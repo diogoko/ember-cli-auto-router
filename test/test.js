@@ -131,11 +131,13 @@ describe('built-in routes', function() {
     map.resources['posts'].resources.should.be.empty;
   });
 
-  it('ignore application when it\'s root', function() {
+  it('ignore application and basic when it\'s root', function() {
     setupModules([
       'app/routes/application',
+      'app/routes/basic',
       'app/routes/posts',
-      'app/routes/users/application'
+      'app/routes/users/application',
+      'app/routes/users/basic'
     ]);
 
     autoMap(map);
@@ -145,7 +147,7 @@ describe('built-in routes', function() {
     map.resources.names.should.be.eql(['users']);
 
     // level 2
-    map.resources['users'].routes.names.should.be.eql(['application']);
+    map.resources['users'].routes.names.should.be.eql(['application', 'basic']);
     map.resources['users'].resources.should.be.empty;
   });
 });

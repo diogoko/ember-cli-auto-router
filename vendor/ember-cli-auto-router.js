@@ -33,7 +33,8 @@ function autoMap(routerMap) {
     var routePath = moduleName.replace(routesRegExp, '');
 
     // Ignore built-in routes
-    if (routePath == 'application' || routePath == 'index' || routePath.endsWith('/index')) {
+    if (routePath == 'application' || routePath == 'basic' ||
+        routePath == 'index' || routePath.endsWith('/index')) {
       return;
     }
 
