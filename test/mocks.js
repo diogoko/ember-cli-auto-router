@@ -43,14 +43,13 @@ FakeRouterDSL.prototype.resource = function(name, options, callback) {
   this.resources[name] = child;
 };
 
-FakeRouterDSL.prototype.hasRoute = function(path) {
-};
 
 Ember = {
   keys: function(o) {
     return Object.keys(o);
   }
 };
+
 
 function setupModules(modules) {
   var _eak_seen;
@@ -66,6 +65,7 @@ function setupModules(modules) {
 
   requirejs = { _eak_seen: _eak_seen };
 }
+
 
 module.exports = {
   'FakeRouterDSL': FakeRouterDSL,

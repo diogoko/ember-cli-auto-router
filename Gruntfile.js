@@ -18,9 +18,6 @@ module.exports = function(grunt) {
     },
 
     mochaTest: {
-      test: {
-        options: 'spec'
-      },
       src: ['test/test.js']
     }
   });

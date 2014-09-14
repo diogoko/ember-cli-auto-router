@@ -11,16 +11,16 @@ function isLeafRoute(route) {
   return Ember.keys(route).length == 0;
 }
 
+function hasDynamicSegment(path) {
+  return /\/:/.test(path);
+}
+
 function registerRoutes(routerMap, rootRoute) {
   Ember.keys(rootRoute).forEach(function(childRouteName) {
-
     var childRoute = rootRoute[childRouteName];
-    var options = {};
-    if (childRoute['__ember_cli_auto_router_path']) {
-      options.path = childRoute['__ember_cli_auto_router_path'];
-    }
+    var options = { path: childRoute.__ember_cli_auto_router_path };
 
-    if (isLeafRoute(childRoute)) {
+    if (isLeafRoute(childRoute) && !hasDynamicSegment(options.path)) {
       routerMap.route(childRouteName, options);
     } else {
       routerMap.resource(childRouteName, options, createChildrenFunction(childRoute));
@@ -45,19 +45,23 @@ function autoMap(routerMap) {
     }
 
     var currentRoute = rootRoute;
-    routePath.split('/').forEach(function(part) {
-      // Add part to current route if it's not there yet
-      if (!currentRoute[part]) {
-        currentRoute[part] = {};
+    routePath.split('/').forEach(function(segment) {
+      // Add segment to current route if it's not there yet
+      if (!currentRoute[segment]) {
+        currentRoute[segment] = {};
       }
 
-      currentRoute = currentRoute[part];
+      // Check if it's a dynamic segment
+      if (segment.startsWith(':')) {
+        hasDynamicSegment = true;
+      }
+
+      currentRoute = currentRoute[segment];
     });
 
     Object.defineProperty(currentRoute, '__ember_cli_auto_router_path', {
-      value: requirejs._eak_seen[moduleName].path
+      value: requirejs._eak_seen[moduleName].path || ('/' + routePath)
     });
-    //currentRoute.__ember_cli_auto_router_path = requirejs._eak_seen[moduleName].path;
   });
 
   registerRoutes(routerMap, rootRoute);

@@ -152,19 +152,30 @@ describe('built-in routes', function() {
   });
 });
 
-describe('custem routes and resources', function() {
+describe('custom routes and resources', function() {
   it('register custom path', function() {
     setupModules({
-      'app/routes/posts': { 'path': '/my_posts' },
-      'app/routes/post': { 'path': '/post/:id' }
+      'app/routes/posts': { 'path': '/my_posts' }
     });
 
     autoMap(map);
 
     map.routes.names.should.be.eql(['posts']);
-    map.routes['posts'].path.should.be.eql('/my_posts');
+    map.routes['posts'].options.path.should.be.eql('/my_posts');
+
+    map.resources.should.be.equal;
+  });
+
+  it('register path with dynamic segment as resource', function() {
+    setupModules({
+      'app/routes/post': { 'path': '/post/:id' }
+    });
+
+    autoMap(map);
+
+    map.routes.should.be.empty;
 
     map.resources.names.should.be.eql(['post']);
-    map.resources['post'].path.should.be.eql('/post/:id');
+    map.resources['post'].options.path.should.be.eql('/post/:id');
   });
 });
