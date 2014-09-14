@@ -8,6 +8,10 @@
   "scripts": {
     "test": "grunt"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/diogoko/ember-cli-auto-router.git"
+  },
   "author": "Diogo Kollross",
   "license": "MIT",
   "devDependencies": {
