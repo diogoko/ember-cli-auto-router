@@ -40,7 +40,7 @@ function autoMap(routerMap) {
 
     // Ignore built-in routes
     if (routePath == 'application' || routePath == 'basic' ||
-        routePath == 'index' || routePath.endsWith('/index')) {
+        routePath == 'index' || routePath.slice(-6) == '/index') {
       return;
     }
 
@@ -52,7 +52,7 @@ function autoMap(routerMap) {
       }
 
       // Check if it's a dynamic segment
-      if (segment.startsWith(':')) {
+      if (segment.slice(0, 1) == ':') {
         hasDynamicSegment = true;
       }
 
