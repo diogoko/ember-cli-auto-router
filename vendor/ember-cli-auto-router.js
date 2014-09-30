@@ -29,8 +29,8 @@ function registerRoutes(routerMap, rootRoute) {
 }
 
 function autoMap(routerMap) {
-  // TODO: use App.modulePrefix instead of \w+
-  var routesRegExp = new RegExp('^\\w+/routes/');
+  // TODO: use App.modulePrefix instead of matching anything
+  var routesRegExp = /^[^/]+\/routes\//;
 
   var rootRoute = {};
   Ember.keys(requirejs._eak_seen).filter(function(key) {

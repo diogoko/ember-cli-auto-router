@@ -179,3 +179,19 @@ describe('custom routes and resources', function() {
     map.resources['post'].options.path.should.be.eql('/post/:id');
   });
 });
+
+describe('module names', function() {
+  it('register module names even with hyphens', function() {
+    setupModules([
+      'app/routes/example',
+      'app-with-dashes/routes/another-example',
+      'app/not/real/routes/foo',
+      '/routes/bar'
+    ]);
+
+    autoMap(map);
+
+    map.routes.names.should.be.eql(['another-example', 'example']);
+    map.resources.should.be.empty;
+  });
+});
