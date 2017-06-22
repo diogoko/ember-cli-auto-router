@@ -77,7 +77,7 @@ Router.map(function() {
 
 Run all tests with `grunt`.
 
-Tests are run in node.js using the [es6-transpiler](https://github.com/termi/es6-transpiler), [mocha](http://visionmedia.github.io/mocha/) and [should.js](https://github.com/visionmedia/should.js/).
+Tests are run in node.js using the [es6-transpiler](https://github.com/termi/es6-transpiler), [mocha](http://mochajs.org/) and [should.js](https://github.com/visionmedia/should.js/).
 
 # License
 
